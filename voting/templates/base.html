@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>votecrypt</title>
+
+    {% load static %}
+
+    <!-- Font Awesome -->
+    <!--<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">-->
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Start your project here-->
+    <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark special-color">
+
+            <!-- Navbar brand -->
+
+            <a class="navbar-brand" href="#" style = "font-family: 'Yatra One'; font-size: 150%;">votecrypt</a>
+        
+            <!-- Collapse button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+            aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse" id="basicExampleNav">
+        
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    {% if request.user.username %}
+                    <a class="nav-link" href="{% url 'node:auth_home' %}">Home
+                    {% else %}
+                    <a class="nav-link" href="#">Home
+                    {% endif %}
+                    <span class="sr-only">(current)</span>
+                </a>
+                </li>
+        
+            </ul>
+            <!-- Links -->
+        
+            </div>
+            <!-- Collapsible content -->
+        
+        </nav>
+        <!--/.Navbar-->
+
+        {% block messages %}
+        {% if messages %}
+        <div class="alert alert-success" role = "alert">
+            {% for m in messages %}
+            <li style="word-wrap: break-word;">{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ m }}</li>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endblock %}
+        
+
+        {% block body %}
+        {% endblock %}
+
+        
+    
+    <!-- /Start your project here-->
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+</body>
+
+</html>

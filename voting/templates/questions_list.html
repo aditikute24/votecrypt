@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% if already_voted %}
+<div class="alert alert-danger" role = "alert">    
+    <li style="word-wrap: break-word;">>Vote Already Registered !</li>
+</div>
+{% endif %}
+
+<div class="container" style = "padding-top: 4%;">
+    <div class="card">
+        <h3 class="card-header special-color white-text text-center">Select Poll to Enter</h3>
+        <div class="card-body">
+        <div class="list-group">
+        <a href="#" class="list-group-item waves-effect active">Active Polls</a>
+        {% for question in active_questions %}
+        <a href="{% url 'poll:poll_detail' question.id %}" class="list-group-item waves-effect">{{ question.id }} - {{ question.question }}</a>
+
+        {% endfor %}
+        <a href="#" class="list-group-item waves-effect"></a>
+        <a href="#" class="list-group-item waves-effect active">Closed Polls</a>
+        
+        {% for question in inactive_questions %}
+        <a href="{% url 'poll:poll_detail' question.id %}" class="list-group-item waves-effect">{{ question.id }} - {{ question.question }}</a>
+
+        {% endfor %}
+
+        </div>
+        </div>
+        </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class = "container" style = "padding-top: 3.5%;">    
+    <div class = "col-md-3"></div>
+    <div class = "col-md-6 text-center">
+        <div class="card">
+            <h3 class="card-header special-color white-text">Authority Login</h3>
+            <div class="card-body">
+                <!--<h4 class="card-title">Blind Signat</h4>-->
+
+                <form method="post" action = "">
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                    <div class = "md-form form-lg">
+                        <span class="text-danger small">{{ field.errors }}
+                        {{ field }}
+                        {{ field.label_tag }}
+                        <div class="help-block small">{{ field.help_text }}</div>
+                    </div> 
+                    {% endfor %}
+                    
+                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class = "col-md-3"></div>
+</div>
+
+{% endblock %}

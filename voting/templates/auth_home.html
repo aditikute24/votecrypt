@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class = "container" style = "padding-top: 3.5%;">    
+    <div class = "text-center">
+        <div class="card">
+            <h3 class="card-header special-color white-text">Authority</h3>
+            <div class="card-body">
+                <h4 class="card-title">Get Started</h4>
+                
+
+                <a href = "{% url 'node:new_validations' %}"><button type="button" class="btn btn-primary btn-lg">New Validation Requests</button></a>
+                <a href = "{% url 'poll:new_question' %}"><button type="button" class="btn btn-primary btn-lg">Create New Poll</button></a>
+                <a href = "{% url 'poll:poll_home' %}"><button type="button" class="btn btn-primary btn-lg">Manage Polls</button></a>
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

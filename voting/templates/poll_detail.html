@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class = "container" style = "padding-top: 3.5%;">    
+    <!--<div class = "col-md-3"></div>-->
+    <div class = "row">
+    <div class = "col-md-6">
+        <div class="card">
+            <h3 class="card-header special-color white-text">{{ question }}</h3>
+            <div class="card-body">
+                
+                <p class="card-head"></p>
+
+                <form method="post" action = "">
+                    {% csrf_token %}
+                    
+                        {% for option in form %}   
+                        
+                            <!--<input type="radio" name="options" id="option1" autocomplete="off" checked> Radio 1 (preselected)-->
+                            {% for choice in option %}
+                            
+                            {{ choice.tag }}   
+                            <label for = "{{ choice.id_for_label }}" class="btn btn-primary {% if request.user.username or inactive %} disabled {% endif %}">{{ choice.choice_label }}
+                                 
+                            </label>     
+                            <br>
+                            {% endfor %}
+                        
+                        
+                        {% endfor %}
+                    
+                    <br>
+
+                    {% if inactive %} 
+                    <div style = "padding-left: 35%;"><a href = "#"><button type="button" class="btn btn-primary btn-lg disabled">Voting Closed</button></a></div> 
+                    {% elif request.user.username %}  
+                    <div style = "padding-left: 35%;"><a href = "{% url 'poll:end_poll' poll_id %}"><button type="button" class="btn btn-primary btn-lg">End Poll</button></a></div>
+                    
+                    {% else %}
+                    <div style = "padding-left: 35%;"><button type="submit" class="btn btn-primary btn-lg">Submit</button></div>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class = "col-md-3"></div>
+    <div class = "col-md-3">
+        <div class="card">
+            <h3 class="card-header special-color white-text">Current Results</h3>
+            <div class="list-group">
+            {% for option in poll_options %}
+            <a href="#" class = "list-group-item waves-effect">{{ option.option }} - {{ option.count }} votes.</a>
+            {% endfor %}
+            </div>
+        </div>            
+    </div>
+</div>
+</div>
+
+
+{% endblock %}

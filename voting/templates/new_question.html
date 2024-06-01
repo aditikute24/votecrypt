@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class = "container" style = "padding-top: 3.5%;">    
+    <div class = "col-md-3"></div>
+    <div class = "col-md-6 text-center">
+        <div class="card">
+            <h3 class="card-header special-color white-text">Create New Poll</h3>
+            <div class="card-body">
+                
+                <p class="card-head"></p>
+
+                <form method="post" action = "">
+                    {% csrf_token %}
+                    {% include 'form-template.html' %}  
+                    
+                    <a href = "{% url 'poll:add_option' %}"><button type="button" class="btn btn-primary btn-lg">Add Option</button></a>
+                    <button type="submit" class="btn btn-primary btn-lg">Publish</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class = "col-md-3"></div>
+</div>
+
+
+{% endblock %}

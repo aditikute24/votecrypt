@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container" style = "padding-top: 4%;">
+    <div class="card">
+        <h3 class="card-header special-color white-text text-center">New Validation Requests</h3>
+        <div class="card-body">            
+        {% if blinded_secrets|length_is:'0' %}
+            <h1>No new requests</h1>
+        {% else %}
+        <table class="table table-hover table-responsive">
+            <thead class="primary-color text-center">
+            <tr>
+                <th scope="col" class = "white-text"><h5>#</h5></th>
+                <th scope="col"class = "white-text"><h5>Blinded Secret</h5></th>
+                <th scope="col"class = "white-text"><h5>Sign</h5></th>
+            </tr>
+            </thead>
+            <tbody>
+           {% for secret in blinded_secrets %}            
+            <tr style="word-wrap:break-word;">
+                <th scope="row">{{ forloop.counter }}</th>
+                <td style="word-wrap:break-word; min-width: 895px; max-width: 895px;">{{ secret.hashed_blinded_secret }}</td>
+                <td><a href = "{% url 'node:sign_blinded' secret.hashed_blinded_secret %}"><button type="button" class="btn btn-primary">Sign</button></a></td>
+            </tr>            
+            {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+        </div>
+        </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class = "container" style = "padding-top: 3.5%;">    
+    <div class = "text-center">
+        <div class="card">
+            <h3 class="card-header special-color white-text">GET STARTED</h3>
+            <div class="card-body">
+                <h4 class="card-title">{{ tip_message }}</h4>
+                {% if enter_poll %}
+                <a href = "{% url 'verify_login' %}"><button type="button" class="btn btn-primary btn-lg">Enter Poll</button></a>
+                {% elif hide_validate %}
+                <a href = "{% url 'unblind_signed' %}"><button type="button" class="btn btn-primary btn-lg">Generate Unblinded Key</button></a>
+                
+                {% elif disable_validate %}
+                <a href = "#"><button type="button" class="btn btn-disabled btn-lg">Validate</button></a>
+                {% else %}
+                <a href = "{% url 'blind_to_validate' %}"><button type="button" class="btn btn-primary btn-lg">Validate</button></a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
